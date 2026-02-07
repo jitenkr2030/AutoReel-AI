@@ -1,141 +1,297 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# AutoReel AI 🎬
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+> From idea → daily reels → auto-posted
 
-## ✨ Technology Stack
+Transform your raw content into 30 days of engaging Instagram reels with AI automation. No camera, no editing skills, no Instagram knowledge required.
 
-This scaffold provides a robust foundation built with:
+## 🌟 Features
 
-### 🎯 Core Framework
-- **⚡ Next.js 16** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+### 🎯 Core Automation
+- **One-Time Content Upload**: Upload voice notes, YouTube links, PDFs, or bullet points once
+- **AI-Powered Generation**: Automatically creates 30 unique reel ideas, hooks, scripts, and CTAs
+- **Smart Content Categories**: Content mapped to Awareness, Trust, Lead, and Sale stages
+- **Auto-Posting**: Daily automatic posting at optimal times
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+### 📁 Content Intake Options
+- 🎤 **Voice Notes**: WhatsApp-style audio recordings
+- 📺 **YouTube Links**: Extract content from existing videos
+- 📄 **PDF/Documents**: Upload presentations, notes, or documents
+- 📝 **Bullet Points**: Quick text-based content input
+- 🔗 **Blog/Website**: Extract content from web pages
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+### 🎨 Video Creation
+- Stock video and B-roll integration
+- AI-generated human avatars (optional)
+- Bold, viral-style subtitles
+- Emoji and emphasis effects
+- Trending music integration
+- Custom brand kit application
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Fetch** - Promise-based HTTP request
+### 📊 Analytics & Management
+- Real-time engagement tracking
+- Content performance analytics
+- Scheduling dashboard
+- Multi-platform support (Instagram, Facebook)
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+## 💰 Pricing
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
-
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
-
-## 🎯 Why This Scaffold?
-
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+| Plan | Price | Features |
+|------|-------|----------|
+| **Starter** | ₹999/month | 12 reels/month, Auto captions, Manual posting |
+| **Growth** | ₹2,999/month | 30 reels/month, Auto-posting, Trending audio, Brand kit |
+| **Business** | ₹4,999-₹5,999/month | 30 reels/month, Daily auto-post, Local hashtags, DM CTA copy |
 
 ## 🚀 Quick Start
 
-```bash
-# Install dependencies
-bun install
+### Prerequisites
+- Node.js 18+ 
+- Bun or npm
+- SQLite3
 
-# Start development server
-bun run dev
+### Installation
 
-# Build for production
-bun run build
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/jitenkr2030/AutoReel-AI.git
+   cd AutoReel-AI
+   ```
 
-# Start production server
-bun start
-```
+2. **Install dependencies**
+   ```bash
+   bun install
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
 
-## 🤖 Powered by Z.ai
+4. **Set up the database**
+   ```bash
+   bun run db:push
+   bun run db:generate
+   ```
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+5. **Start the development server**
+   ```bash
+   bun run dev
+   ```
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
+6. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
+## 🏗️ Tech Stack
+
+### Frontend
+- **Framework**: Next.js 16 with App Router
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4
+- **UI Components**: shadcn/ui (New York style)
+- **Icons**: Lucide React
+- **State Management**: Zustand, TanStack Query
+
+### Backend
+- **Database**: SQLite with Prisma ORM
+- **API**: Next.js API Routes
+- **Validation**: Zod
+- **File Processing**: Multer, PDF parsing
+- **AI Integration**: z-ai-web-dev-sdk
+
+### Infrastructure
+- **Deployment**: Vercel (recommended)
+- **Database**: SQLite (development), PostgreSQL (production)
+- **File Storage**: AWS S3 compatible
+- **Video Processing**: FFmpeg, Remotion
 
 ## 📁 Project Structure
 
 ```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+AutoReel-AI/
+├── src/
+│   ├── app/
+│   │   ├── api/           # API routes
+│   │   ├── auth/          # Authentication pages
+│   │   ├── dashboard/     # User dashboard
+│   │   ├── upload/        # Content upload interface
+│   │   └── page.tsx       # Landing page
+│   ├── components/
+│   │   └── ui/            # Reusable UI components
+│   ├── lib/
+│   │   ├── db.ts          # Database client
+│   │   └── utils.ts       # Utility functions
+│   └── hooks/             # Custom React hooks
+├── prisma/
+│   └── schema.prisma      # Database schema
+├── public/                # Static assets
+└── docs/                  # Documentation
 ```
 
-## 🎨 Available Features & Components
+## 🔧 Configuration
 
-This scaffold includes a comprehensive set of modern web development tools:
+### Environment Variables
+Create a `.env` file with the following variables:
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+```env
+# Database
+DATABASE_URL="file:./dev.db"
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+# AI Services
+OPENAI_API_KEY="your-openai-key"
+Z_AI_SDK_KEY="your-z-ai-key"
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+# Social Media APIs
+INSTAGRAM_ACCESS_TOKEN="your-instagram-token"
+FACEBOOK_ACCESS_TOKEN="your-facebook-token"
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Fetch + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+# File Storage
+AWS_ACCESS_KEY_ID="your-aws-key"
+AWS_SECRET_ACCESS_KEY="your-aws-secret"
+AWS_S3_BUCKET="your-s3-bucket"
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
+# Authentication
+NEXTAUTH_SECRET="your-nextauth-secret"
+NEXTAUTH_URL="http://localhost:3000"
+```
 
-## 🤝 Get Started with Z.ai
+## 📖 API Documentation
 
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+### Content Generation
+```bash
+POST /api/content
+Content-Type: application/json
+
+{
+  "title": "My Content Batch",
+  "contentType": "VOICE_NOTE",
+  "content": "Raw content text...",
+  "userId": "user-id"
+}
+```
+
+### Reel Generation
+```bash
+POST /api/reels/generate
+Content-Type: application/json
+
+{
+  "reelId": "reel-id",
+  "options": {
+    "includeTrendingAudio": true,
+    "style": "professional"
+  }
+}
+```
+
+## 🎯 Target Customers
+
+### Local Businesses (Best Money)
+- Gyms and fitness centers
+- Salons and spas
+- Restaurants and cafes
+- Real estate agents
+- Coaching centers
+
+### Coaches & Solopreneurs
+- Business coaches
+- Traders and educators
+- Consultants
+- Personal brands
+- Course creators
+
+## 🔧 Development
+
+### Available Scripts
+```bash
+# Development
+bun run dev          # Start development server
+bun run build        # Build for production
+bun run start        # Start production server
+
+# Database
+bun run db:push      # Push schema to database
+bun run db:generate  # Generate Prisma client
+bun run db:migrate   # Run migrations
+bun run db:reset     # Reset database
+
+# Code Quality
+bun run lint         # Run ESLint
+```
+
+### Database Schema
+The application uses the following main models:
+- **User**: User accounts and profiles
+- **Subscription**: Plan management and billing
+- **ContentBatch**: Content upload batches
+- **Reel**: Generated reel content
+- **Analytics**: Performance metrics
+- **SocialAccount**: Connected social media accounts
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+1. Connect your GitHub repository to Vercel
+2. Configure environment variables
+3. Deploy automatically on push to main branch
+
+### Docker
+```bash
+# Build the image
+docker build -t autoreel-ai .
+
+# Run the container
+docker run -p 3000:3000 autoreel-ai
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- 📧 Email: support@autoreel.ai
+- 💬 Discord: [Join our community](https://discord.gg/autoreel)
+- 📖 Documentation: [docs.autoreel.ai](https://docs.autoreel.ai)
+
+## 🎉 Roadmap
+
+### Version 1.0 (Current)
+- ✅ Core content generation
+- ✅ Multi-format upload support
+- ✅ Basic dashboard
+- ✅ Instagram integration
+
+### Version 1.1 (Q1 2024)
+- 🔄 Advanced video customization
+- 🔄 TikTok integration
+- 🔄 Team collaboration
+- 🔄 Advanced analytics
+
+### Version 2.0 (Q2 2024)
+- 📋 AI avatar generation
+- 📋 Multi-language support
+- 📋 White-label solution
+- 📋 Mobile app
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/) - The React framework
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [shadcn/ui](https://ui.shadcn.com/) - Beautiful UI components
+- [Prisma](https://www.prisma.io/) - Next-generation ORM
+- [Lucide](https://lucide.dev/) - Beautiful icons
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+<div align="center">
+  <p>Made with ❤️ by the AutoReel AI Team</p>
+  <p>Transform your content, grow your brand 🚀</p>
+</div>

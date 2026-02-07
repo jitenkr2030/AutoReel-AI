@@ -14,19 +14,194 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              String    @id @default(cuid())
+  email           String    @unique
+  name            String?
+  password        String?
+  image           String?
+  emailVerified   DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  // Relations
+  subscription    Subscription?
+  brandKit        BrandKit?
+  contentBatches  ContentBatch[]
+  reels           Reel[]
+  analytics       Analytics[]
+  socialAccounts  SocialAccount[]
+  
+  @@map("users")
 }
 
-model Post {
-  id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Subscription {
+  id                String    @id @default(cuid())
+  userId            String    @unique
+  plan              SubscriptionPlan @default(FREE)
+  status            SubscriptionStatus @default(ACTIVE)
+  currentPeriodEnd  DateTime?
+  reelsPerMonth     Int       @default(0)
+  autoPosting       Boolean   @default(false)
+  crossPosting      Boolean   @default(false)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("subscriptions")
+}
+
+model BrandKit {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  brandName   String?
+  logoUrl     String?
+  primaryColor String  @default("#000000")
+  secondaryColor String @default("#ffffff")
+  fontFamily  String   @default("Inter")
+  watermark   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("brand_kits")
+}
+
+model ContentBatch {
+  id          String         @id @default(cuid())
+  userId      String
+  title       String
+  contentType ContentType
+  content     String         // JSON field storing the actual content
+  status      ProcessingStatus @default(PENDING)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  
+  user    User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reels   Reel[]
+  
+  @@map("content_batches")
+}
+
+model Reel {
+  id              String         @id @default(cuid())
+  userId          String
+  contentBatchId  String
+  title           String
+  hook            String         // First 3 seconds hook
+  script          String         // 7-20 second script
+  cta             String         // Call to action
+  hashtags        String         // Comma-separated hashtags
+  category        ReelCategory   // AWARENESS, TRUST, LEAD, SALE
+  status          ReelStatus     @default(DRAFT)
+  videoUrl        String?        // Generated video URL
+  thumbnailUrl    String?        // Video thumbnail
+  scheduledFor    DateTime?      // When to post
+  postedAt        DateTime?      // When actually posted
+  instagramPostId String?        // Instagram post ID
+  views           Int            @default(0)
+  likes           Int            @default(0)
+  comments        Int            @default(0)
+  shares          Int            @default(0)
+  saves           Int            @default(0)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contentBatch ContentBatch  @relation(fields: [contentBatchId], references: [id], onDelete: Cascade)
+  
+  @@map("reels")
+}
+
+model SocialAccount {
+  id           String           @id @default(cuid())
+  userId       String
+  platform     SocialPlatform
+  username     String
+  accessToken  String           // Encrypted
+  refreshToken String?          // Encrypted
+  expiresAt    DateTime?
+  isActive     Boolean          @default(true)
+  lastSyncAt   DateTime?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, platform])
+  @@map("social_accounts")
+}
+
+model Analytics {
+  id            String   @id @default(cuid())
+  userId        String
+  date          DateTime @default(now())
+  reelsPosted   Int      @default(0)
+  totalViews    Int      @default(0)
+  totalLikes    Int      @default(0)
+  totalComments Int      @default(0)
+  totalShares   Int      @default(0)
+  totalSaves    Int      @default(0)
+  engagementRate Float   @default(0)
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, date])
+  @@map("analytics")
+}
+
+// Enums
+enum SubscriptionPlan {
+  FREE
+  STARTER    // ₹999/month
+  GROWTH     // ₹2,999/month  
+  BUSINESS   // ₹4,999-₹5,999/month
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  UNPAID
+}
+
+enum ContentType {
+  VOICE_NOTE
+  YOUTUBE_LINK
+  PDF
+  NOTES
+  BLOG_LINK
+  BULLET_POINTS
+  TEXT
+}
+
+enum ProcessingStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum ReelStatus {
+  DRAFT
+  GENERATING
+  READY
+  SCHEDULED
+  POSTED
+  FAILED
+}
+
+enum ReelCategory {
+  AWARENESS
+  TRUST
+  LEAD
+  SALE
+}
+
+enum SocialPlatform {
+  INSTAGRAM
+  FACEBOOK
+  TIKTOK
+  YOUTUBE
 }
